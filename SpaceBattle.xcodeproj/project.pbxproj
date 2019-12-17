@@ -8,26 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		F441EDBC23A7ADE500F04944 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441EDBB23A7ADE500F04944 /* AppDelegate.swift */; };
-		F441EDBE23A7ADE500F04944 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F441EDBD23A7ADE500F04944 /* GameScene.sks */; };
-		F441EDC023A7ADE500F04944 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F441EDBF23A7ADE500F04944 /* Actions.sks */; };
 		F441EDC223A7ADE500F04944 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441EDC123A7ADE500F04944 /* GameScene.swift */; };
 		F441EDC423A7ADE500F04944 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441EDC323A7ADE500F04944 /* GameViewController.swift */; };
 		F441EDC723A7ADE500F04944 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441EDC523A7ADE500F04944 /* Main.storyboard */; };
 		F441EDC923A7ADE600F04944 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F441EDC823A7ADE600F04944 /* Assets.xcassets */; };
 		F441EDCC23A7ADE600F04944 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F441EDCA23A7ADE600F04944 /* LaunchScreen.storyboard */; };
+		F441EDD523A7BA5700F04944 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F441EDD323A7BA5600F04944 /* explosion.mp3 */; };
+		F441EDD623A7BA5700F04944 /* torpedo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F441EDD423A7BA5700F04944 /* torpedo.mp3 */; };
+		F441EDDA23A7BD3100F04944 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = F441EDD923A7BD3100F04944 /* Explosion.sks */; };
+		F441EDDC23A7BD4800F04944 /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = F441EDDB23A7BD4800F04944 /* Starfield.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F441EDB823A7ADE500F04944 /* SpaceBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F441EDBB23A7ADE500F04944 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F441EDBD23A7ADE500F04944 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		F441EDBF23A7ADE500F04944 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		F441EDC123A7ADE500F04944 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		F441EDC323A7ADE500F04944 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F441EDC623A7ADE500F04944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F441EDC823A7ADE600F04944 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F441EDCB23A7ADE600F04944 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F441EDCD23A7ADE600F04944 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F441EDD323A7BA5600F04944 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		F441EDD423A7BA5700F04944 /* torpedo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = torpedo.mp3; sourceTree = "<group>"; };
+		F441EDD923A7BD3100F04944 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		F441EDDB23A7BD4800F04944 /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +64,27 @@
 		F441EDBA23A7ADE500F04944 /* SpaceBattle */ = {
 			isa = PBXGroup;
 			children = (
+				F441EDDF23A7BE5500F04944 /* Resources */,
 				F441EDBB23A7ADE500F04944 /* AppDelegate.swift */,
-				F441EDBD23A7ADE500F04944 /* GameScene.sks */,
-				F441EDBF23A7ADE500F04944 /* Actions.sks */,
 				F441EDC123A7ADE500F04944 /* GameScene.swift */,
 				F441EDC323A7ADE500F04944 /* GameViewController.swift */,
 				F441EDC523A7ADE500F04944 /* Main.storyboard */,
-				F441EDC823A7ADE600F04944 /* Assets.xcassets */,
 				F441EDCA23A7ADE600F04944 /* LaunchScreen.storyboard */,
-				F441EDCD23A7ADE600F04944 /* Info.plist */,
 			);
 			path = SpaceBattle;
+			sourceTree = "<group>";
+		};
+		F441EDDF23A7BE5500F04944 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F441EDD323A7BA5600F04944 /* explosion.mp3 */,
+				F441EDD423A7BA5700F04944 /* torpedo.mp3 */,
+				F441EDC823A7ADE600F04944 /* Assets.xcassets */,
+				F441EDCD23A7ADE600F04944 /* Info.plist */,
+				F441EDD923A7BD3100F04944 /* Explosion.sks */,
+				F441EDDB23A7BD4800F04944 /* Starfield.sks */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,11 +145,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F441EDD623A7BA5700F04944 /* torpedo.mp3 in Resources */,
+				F441EDD523A7BA5700F04944 /* explosion.mp3 in Resources */,
 				F441EDC723A7ADE500F04944 /* Main.storyboard in Resources */,
-				F441EDBE23A7ADE500F04944 /* GameScene.sks in Resources */,
 				F441EDC923A7ADE600F04944 /* Assets.xcassets in Resources */,
+				F441EDDA23A7BD3100F04944 /* Explosion.sks in Resources */,
+				F441EDDC23A7BD4800F04944 /* Starfield.sks in Resources */,
 				F441EDCC23A7ADE600F04944 /* LaunchScreen.storyboard in Resources */,
-				F441EDC023A7ADE500F04944 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -278,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,10 +307,11 @@
 		F441EDD123A7ADE600F04944 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = SpaceBattle;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ACA42AA29E;
-				INFOPLIST_FILE = SpaceBattle/Info.plist;
+				INFOPLIST_FILE = SpaceBattle/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,17 +319,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcollado.SpaceBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		F441EDD223A7ADE600F04944 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = SpaceBattle;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ACA42AA29E;
-				INFOPLIST_FILE = SpaceBattle/Info.plist;
+				INFOPLIST_FILE = SpaceBattle/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcollado.SpaceBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
