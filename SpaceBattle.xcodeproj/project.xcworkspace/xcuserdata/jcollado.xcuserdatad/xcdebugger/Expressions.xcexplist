@@ -18,5 +18,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "GameScene.didSimulatePhysics():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "xAcceleration">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -25,7 +25,7 @@ class GameScene: SKScene {
     let torpedoSoundAction: SKAction = SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false)
     var gameTimer: Timer!
     var attackers = ["meteor","alien"]
-
+    
     let alienCategory: UInt32 = 0x1 << 1
     let torpedoCategory: UInt32 = 0x1 << 0
     
@@ -39,6 +39,7 @@ class GameScene: SKScene {
         setupPhisicsWord()
         setupScoreLabel()
         setupAliensAndAsteroids()
+        setupCoreMotion()
     }
     
     func setupCoreMotion() {
@@ -145,18 +146,31 @@ class GameScene: SKScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        torpedoDidCollideWithAlien(body1: contact.bodyA.node as! SKSpriteNode, body2: contact.bodyB.node as! SKSpriteNode)
+        var torpedoBody: SKPhysicsBody
+        var alienBody: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            torpedoBody = contact.bodyA
+            alienBody = contact.bodyB
+        } else {
+            torpedoBody =  contact.bodyB
+            alienBody = contact.bodyA
+        }
+        if (torpedoBody.categoryBitMask & torpedoCategory) != 0 && (alienBody.categoryBitMask & alienCategory) != 0 {
+            torpedoDidCollideWithAlien(torpedoNode: torpedoBody.node as! SKSpriteNode, alienNode: alienBody.node as! SKSpriteNode)
+        }
+        
     }
     
-    func torpedoDidCollideWithAlien(body1: SKSpriteNode, body2: SKSpriteNode) {
+    func torpedoDidCollideWithAlien(torpedoNode: SKSpriteNode, alienNode: SKSpriteNode) {
         let explosion = SKEmitterNode(fileNamed: "Explosion")!
-        explosion.position = body1.position
+        explosion.position = alienNode.position
         addChild(explosion)
         
         run(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
         
-        body1.removeFromParent()
-        body2.removeFromParent()
+        torpedoNode.removeFromParent()
+        alienNode.removeFromParent()
         
         run(SKAction.wait(forDuration: 1)) {
             explosion.removeFromParent()
@@ -166,10 +180,10 @@ extension GameScene: SKPhysicsContactDelegate {
     
     override func didSimulatePhysics() {
         player.position.x += xAcceleration * 50
-        if player.position.x < -80 {
-            player.position = CGPoint(x: CGFloat(frame.size.width + 80), y: player.position.y)
-        } else if player.position.x > frame.size.width  + 80 {
-            player.position = CGPoint(x: CGFloat(frame.size.width - 80), y: player.position.y)
+        if player.position.x < -40 {
+            player.position = CGPoint(x: CGFloat(frame.size.width), y: player.position.y)
+        } else if player.position.x > frame.size.width  + 40 {
+            player.position = CGPoint(x: -CGFloat(40), y: player.position.y)
         }
     }
 }
