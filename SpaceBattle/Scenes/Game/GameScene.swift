@@ -75,6 +75,7 @@ class GameScene: SKScene {
     func setupPhisicsWord() {
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
+        backgroundColor = .black
     }
     
     func setupStarField() {

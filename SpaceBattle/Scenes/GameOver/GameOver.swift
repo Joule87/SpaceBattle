@@ -13,6 +13,7 @@ class GameOver: SKScene {
     var starField: SKEmitterNode!
     var scoreNumberLabel: SKLabelNode!
     var newGameButtonNode: SKSpriteNode!
+    var menuButtonNode: SKSpriteNode!
     
     var score: Int = 0
     
@@ -20,6 +21,12 @@ class GameOver: SKScene {
         setupStarField()
         setupScoreNumberLabel()
         setupNewGameButton()
+        setupMenuButtonNode()
+    }
+    
+    func setupMenuButtonNode() {
+        menuButtonNode = childNode(withName: "menuButton") as? SKSpriteNode
+        menuButtonNode.texture = SKTexture(imageNamed: "home")
     }
     
     func setupStarField() {
@@ -45,6 +52,10 @@ class GameOver: SKScene {
             let transition = SKTransition.flipHorizontal(withDuration: 0.5)
             let gameScene = GameScene(size: self.size)
             self.view?.presentScene(gameScene, transition: transition)
+        } else  if node[0].name == "menuButton" {
+            let transition = SKTransition.flipHorizontal(withDuration: 0.5)
+            let gameOverScene = SKScene(fileNamed: "MenuScene")!
+            self.view?.presentScene(gameOverScene, transition: transition)
         }
     }
     

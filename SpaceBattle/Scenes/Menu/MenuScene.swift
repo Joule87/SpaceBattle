@@ -15,6 +15,7 @@ class MenuScene: SKScene {
     var newGameButtonNode: SKSpriteNode!
     var difficultyButtonNode: SKSpriteNode!
     var difficultyLabelNode: SKLabelNode!
+    var gameTitleLabelNode: SKLabelNode!
     
     let newGameButtonName = "newGameButton"
     let difficultyButtonName = "difficultyButton"
@@ -22,8 +23,10 @@ class MenuScene: SKScene {
     let userDefaults = UserDefaults.standard
     
     override func didMove(to view: SKView) {
+        setupGameTitleLabel()
         setupStartField()
         setupNewGameButtonNode()
+        setupDifficultyButtonNode()
         setupDifficultLabelNode()
         
     }
@@ -42,9 +45,17 @@ class MenuScene: SKScene {
         }
         
     }
+    //gameTitleLabel
+    private func setupGameTitleLabel() {
+        gameTitleLabelNode = childNode(withName: "gameTitleLabel") as? SKLabelNode
+        let yPosition = gameTitleLabelNode.position.y
+        gameTitleLabelNode.position = CGPoint(x: frame.size.width/2, y: yPosition)
+    }
     
     private func setupNewGameButtonNode() {
         newGameButtonNode = self.childNode(withName: newGameButtonName) as? SKSpriteNode
+        let yPosition = newGameButtonNode.position.y
+        newGameButtonNode.position = CGPoint(x: frame.size.width/2, y: yPosition)
     }
     
     private func setupStartField() {
@@ -52,12 +63,17 @@ class MenuScene: SKScene {
         starField.advanceSimulationTime(10)
     }
     
-    private func setupDifficultLabelNode() {
+    private func setupDifficultyButtonNode() {
         difficultyButtonNode = self.childNode(withName: difficultyButtonName) as? SKSpriteNode
         difficultyButtonNode.texture = SKTexture(imageNamed: difficultyButtonName)
-        
+        let yPosition = difficultyButtonNode.position.y
+        difficultyButtonNode.position = CGPoint(x: frame.size.width/2, y: yPosition)
+    }
+    
+    private func setupDifficultLabelNode() {
         difficultyLabelNode = self.childNode(withName: "difficultyLabel") as? SKLabelNode
-        
+        let yPosition = difficultyLabelNode.position.y
+        difficultyLabelNode.position = CGPoint(x: frame.size.width/2, y: yPosition)
         if let gameDifficulty = userDefaults.value(forKey: Constants.UserDefaultKeys.GameDifficulty) as? String {
             difficultyLabelNode.text = gameDifficulty
         } else {
