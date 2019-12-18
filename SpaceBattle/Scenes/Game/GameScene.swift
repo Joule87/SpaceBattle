@@ -16,6 +16,8 @@ class GameScene: SKScene {
     var player: SKSpriteNode!
     var scoreLabel: SKLabelNode!
     
+    let difficultManager = DifficultyManager()
+    
     var score: Int = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
@@ -32,14 +34,31 @@ class GameScene: SKScene {
     let motionManager = CMMotionManager()
     var xAcceleration: CGFloat = 0
     
+    var livesArray: [SKSpriteNode]!
+    
+    let userDefaults = UserDefaults.standard
     
     override func didMove(to view: SKView) {
+        setupLives()
         setupStarField()
         setupPlayer()
         setupPhisicsWord()
         setupScoreLabel()
         setupAliensAndAsteroids()
         setupCoreMotion()
+    }
+    
+    func setupLives() {
+        livesArray = [SKSpriteNode]()
+        for life in 1...3 {
+            let lifeNode = SKSpriteNode(imageNamed: "spaceship")
+            lifeNode.size = CGSize(width: 44, height: 44)
+            lifeNode.zPosition = 5
+            lifeNode.position = CGPoint(x: self.frame.size.width - CGFloat(4 - life) * lifeNode.size.width, y: frame.size.height - 50)
+            self.addChild(lifeNode)
+            livesArray.append(lifeNode)
+        }
+        
     }
     
     func setupCoreMotion() {
@@ -76,7 +95,8 @@ class GameScene: SKScene {
     
     func setupScoreLabel() {
         scoreLabel = SKLabelNode(text: "Score: 0")
-        scoreLabel.position = CGPoint(x: frame.size.width - 100, y: frame.size.height - 70)
+        scoreLabel.position = CGPoint(x: (scoreLabel.frame.width / 2) + 10, y: frame.size.height - 50)
+        scoreLabel.zPosition = 5
         scoreLabel.fontSize = 25
         scoreLabel.fontName = "AmericanTypewriter-Bold"
         scoreLabel.color = .white
@@ -84,7 +104,8 @@ class GameScene: SKScene {
     }
     
     func setupAliensAndAsteroids() {
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAliensAndAsteroids), userInfo: nil, repeats: true)
+        let timeInterval = difficultManager.getAlienAparitionInterval()
+        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(addAliensAndAsteroids), userInfo: nil, repeats: true)
     }
     
     @objc func addAliensAndAsteroids() {
@@ -103,13 +124,29 @@ class GameScene: SKScene {
         
         addChild(attaker)
         
-        let animationDuration: TimeInterval = 6
+        let animationDuration = difficultManager.getAlienAnimationDutationInterval()
         
         var actionArray = [SKAction]()
         actionArray.append(SKAction.move(to: CGPoint(x: position, y: -attaker.size.height), duration: animationDuration))
+        actionArray.append(SKAction.run(alienGotBase))
         actionArray.append(SKAction.removeFromParent())
         
         attaker.run(SKAction.sequence(actionArray))
+    }
+    
+    func alienGotBase() {
+        run(SKAction.playSoundFileNamed("looseLife.mp3", waitForCompletion: false))
+        if livesArray.count > 0 {
+            let lifeNode = livesArray.first
+            lifeNode?.removeFromParent()
+            livesArray.removeFirst()
+        }
+        if livesArray.count == 0 {
+            let transition = SKTransition.flipHorizontal(withDuration: 0.5)
+            let gameScene = SKScene(fileNamed: "GameOver") as! GameOver
+            gameScene.score = self.score
+            self.view?.presentScene(gameScene, transition: transition)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -146,18 +183,21 @@ class GameScene: SKScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        var torpedoBody: SKPhysicsBody
-        var alienBody: SKPhysicsBody
+        var bodyWithMaxCategoryBitMask: SKPhysicsBody
+        var bodyWithMinCategoryBitMask: SKPhysicsBody
         
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            torpedoBody = contact.bodyA
-            alienBody = contact.bodyB
+            bodyWithMaxCategoryBitMask = contact.bodyA
+            bodyWithMinCategoryBitMask = contact.bodyB
         } else {
-            torpedoBody =  contact.bodyB
-            alienBody = contact.bodyA
+            bodyWithMaxCategoryBitMask =  contact.bodyB
+            bodyWithMinCategoryBitMask = contact.bodyA
         }
-        if (torpedoBody.categoryBitMask & torpedoCategory) != 0 && (alienBody.categoryBitMask & alienCategory) != 0 {
-            torpedoDidCollideWithAlien(torpedoNode: torpedoBody.node as! SKSpriteNode, alienNode: alienBody.node as! SKSpriteNode)
+        let isTorpedoBody = (bodyWithMaxCategoryBitMask.categoryBitMask & torpedoCategory) != 0
+        let isAlienBody = (bodyWithMinCategoryBitMask.categoryBitMask & alienCategory) != 0
+        
+        if  isTorpedoBody && isAlienBody {
+            torpedoDidCollideWithAlien(torpedoNode: bodyWithMaxCategoryBitMask.node as! SKSpriteNode, alienNode: bodyWithMinCategoryBitMask.node as! SKSpriteNode)
         }
         
     }

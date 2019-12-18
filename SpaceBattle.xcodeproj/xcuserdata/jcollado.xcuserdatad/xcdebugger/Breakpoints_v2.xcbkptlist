@@ -25,8 +25,8 @@
             filePath = "SpaceBattle/GameScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "fireTorpedo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -44,6 +44,22 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "setupCoreMotion()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22752BC8-FC3A-4EF8-AB95-83FB14CCFB36"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpaceBattle/Scenes/Game/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "alienGotBase()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
